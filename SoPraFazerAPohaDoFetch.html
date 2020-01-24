@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+        <meta http-equiv="X-UA-Compatible" content = "ie=edge">
+        <title> Keat </title>
+    </head>
+    
+    <body>
+        <form>
+        <input type="text" class="pokename" placeholder="Aqui o nome do Pokémon...">
+        <button type="button" id="btnPesquisar" class="btn btn-primary">Pesquisa</button>
+            </form>
+  <style> .pokename {
+                text-transform: lowercase;
+      }
+        </style>
+        
+        
+        <script type="text/javascript">  
+            
+           const btnPesquisarpoke = document.querySelector("#btnPesquisar"); 
+           var   pokemon, card;
+           const Inputpokemon = document.querySelector('.pokename');
+           var pokename = Inputpokemon.value;
+           const baseurl = 'https://pokeapi.co/api/v2/pokemon/'; 
+            
+            
+        btnPesquisarpoke.addEventListener("click", event =>{
+            
+                event.preventDefault();
+                requestPokeInfo(baseurl, pokename)
+                console.log(pokemon);      
+        
+        }) 
+            
+            
+            fetch(baseurl)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(err => console.log(err));
+
+            function requestPokeInfo(url, name) {
+                 fetch(url + name)
+                    .then(response => response.json())
+                    .then(data => {
+                    pokemon = data;
+    })
+    .catch(err => console.log(err));
+}
+    
+            
+            
+            
+        </script>
+        
+    </body>
+    
+    
+</html>
